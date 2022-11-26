@@ -30,3 +30,26 @@ def strategy(today_bitcoin_price, tmr_bitcoin_price,
         if flag == 3:
                 gold_number += (dollar_num / (1+a_gold)) / today_gold_price
                 dollar_num = 0
+                return gold_number, bitcoin_number, dollar_num
+        if max_prof == bitcoin_prof:
+            if flag == 1:
+                bitcoin_number+=((gold_number * today_gold_price)/(1+a_gold))/(1+a_bitcoin)/today_bitcoin_price
+                gold_number=o
+                return gold_number,bitcoin_number,dollar_num
+            if flag == 2:
+                return gold_number,bitcoin_number,dollar_num
+            if flag == 3:
+                bitcoin_number +=(dollar_num/(1+a_bitcoin))/ today_bitcoin_price
+                dollar_num=0
+                return gold_number, bitcoin_number, dollar_num
+        if max_prof == dollar_prof:
+            if flag == 1:
+                dollar_num += ((gold_number * today_gold_price)/(1+a_gold))
+                gold_number = 0
+                return gold_number,bitcoin_number,dollar_num
+            if flag == 2:
+                dollar_num += ((bitcoin_number * today_bitcoin_price) / (1 + a_bitcoin))
+                bitcoin_number = 0
+                return gold_number,bitcoin_number,dollar_num
+            if flag == 3:
+                return gold_number,bitcoin_number, dollar_num
